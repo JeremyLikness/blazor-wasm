@@ -1,0 +1,22 @@
+﻿@page "/"
+@inject IJSRuntime JsRuntime
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+<textarea style="width: 100%" rows="5" bind="@SourceText"></textarea>
+<button onclick="@Convert">Convert</button>
+<p ref="Target"/>
+
+@functions {
+    string SourceText { get; set; }
+
+    ElementRef Target;
+
+    void Convert()
+    {
+        var html = Markdig.Markdown.ToHtml(SourceText);
+        JsRuntime.InvokeAsync<object>("markupExtensions.toHtml", html, Target);
+    }
+}

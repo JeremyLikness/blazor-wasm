@@ -124,3 +124,82 @@ Create a new Blazor project (no hosting, client only).
 
 8. Run and show it is picking up the value, but not refreshing. Explain we'll cover manual UI refresh later.
 
+### Libraries and Interop
+
+Create a new client-only project.
+
+1. In NuGet packages, search for and install `MarkDig`
+2. In `Index.cshtml` add the following HTML:
+
+    ```html
+    <textarea style="width: 100%" rows="5" bind="@SourceText"></textarea>
+    <button onclick="@Convert">Convert</button>
+    <p>@TargetText</p>
+    ```
+
+3. Add a `@functions` block:
+
+    ```csharp
+    string SourceText { get; set; }
+    string TargetText { get; set; }
+
+    void Convert()
+    {
+        TargetText = Markdig.Markdown.ToHtml(SourceText);
+    }
+    ```
+
+4. Run and show the conversion. Explain that the bindings are "safe" and don't expand the HTML.
+
+5. Create a file under `wwwroot` called `markupExtensions.js` and populate it with:
+
+    ```javascript
+    window.markupExtensions = {
+        toHtml: (txt, target) => {
+            const area = document.createElement("textarea");
+            area.innerHTML = txt;
+            target.innerHTML = area.value;
+        }
+    }
+    ```
+
+6. Reference it from `index.html` under `wwwroot` with `<script src="./markupExtensions.js"></script>`
+7. In `index.cshtml` remove the `TargetText` references and inject the JavaScript interop: `@inject IJSRuntime JsRuntime`
+8. Change the paragraph element to a reference: `<p ref="Target"/>`
+9. Update the `@functions` to call the JavaScript via interop
+
+    ```csharp
+    string SourceText { get; set; }
+
+    ElementRef Target;
+
+    void Convert()
+    {
+        var html = Markdig.Markdown.ToHtml(SourceText);
+        JsRuntime.InvokeAsync<object>("markupExtensions.toHtml", html, Target);
+    }
+    ```
+
+10. Explain `Convert` could be `async` and await a response if necessary
+
+11. Add a class named `Markdown`
+
+    ```csharp
+    public static class Markdown
+    {
+        [JSInvokable]
+        public static string Convert(string src)
+        {
+            return Markdig.Markdown.ToHtml(src);
+        }
+    }
+    ```
+
+12. Re-run the app and from the console type:
+
+    ```javascript
+    alert(DotNet.invokeMethod("LibrariesInterop", "Convert", "# heading \n## sub-heading"))
+    ```
+
+13. Explain this can also use `Task` to make it asynchronous
+
