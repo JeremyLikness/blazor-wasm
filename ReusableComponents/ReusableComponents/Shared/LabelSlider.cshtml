@@ -1,0 +1,29 @@
+﻿<input type="range" min="@Min" max="@Max" bind-value-oninput="@CurrentValue" />
+<span>@CurrentValue</span>
+
+@functions {
+    [Parameter]
+    int Min { get; set; }
+
+    [Parameter]
+    int Max { get; set; }
+
+    private int _currentValue;
+
+    [Parameter]
+    int CurrentValue
+    {
+        get => _currentValue;
+        set
+        {
+            if (value != _currentValue)
+            {
+                _currentValue = value;
+                CurrentValueChanged(value);
+            }
+        }
+    }
+
+    [Parameter]
+    Action<int> CurrentValueChanged { get; set; }
+}

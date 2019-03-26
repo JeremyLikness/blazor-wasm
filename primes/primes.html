@@ -1,0 +1,32 @@
+<html>
+	<head>
+		<title>Compute Primes</title>
+	</head>
+	<body>
+		<script src="primes.js"></script>
+                <script src="primes.asm.js"></script>
+		<script src="primes.wasm.js"></script>
+		<button id="btnPrimeJs">JavaScript</button>
+                <button id="btnAsmJs">asm.js</button>
+		<button id="btnWasm">Wasm</button>
+		<script>
+                        var iter = 0;
+                        setTimeout(() => {
+				const measure = (fn) => {
+					console.log("Computing prime...");
+					console.time(`prime${iter}`);
+					const result = fn();
+					console.timeEnd(`prime${iter}`);
+                                        iter += 1;
+					console.log(result);
+				};
+				const btnPrimeJs = document.getElementById("btnPrimeJs");
+				btnPrimeJs.addEventListener("click", () => measure(computePrime));
+                                const bntAsmJs = document.getElementById("btnAsmJs");
+                                btnAsmJs.addEventListener("click", () => measure(_computePrimesAsm));
+				const btnWasm = document.getElementById("btnWasm");
+				btnWasm.addEventListener("click", () => measure(_computePrimesWasm));
+			}, 0);
+		</script>
+	</body>
+</html>		
