@@ -202,3 +202,41 @@ Create a new client-only project.
     ```
 
 13. Explain this can also use `Task` to make it asynchronous
+
+### Code Behind
+
+Create a new client-only project.
+
+1. Create a class named `FetchDataBase` (not to be confused with a database)
+
+    ```csharp
+    public class FetchDataBase : ComponentBase
+    {
+        [Inject]
+        public HttpClient Http { get; set; }
+
+        public WeatherForecast[] forecasts;
+
+        protected override async Task OnInitAsync()
+        {
+            forecasts = await Http.GetJsonAsync<WeatherForecast[]>
+                ("sample-data/weather.json");
+        }
+
+        public class WeatherForecast
+        {
+            public DateTime Date { get; set; }
+
+            public int TemperatureC { get; set; }
+
+            public int TemperatureF { get; set; }
+
+            public string Summary { get; set; }
+        }
+    }
+    ```
+
+2. Open `FetchData.cshtml` and remove the `@Inject` line and entire `@functions` block
+3. Add `@inherits FetchDataBase` after the `@page` directive
+4. Run it and show it working
+
