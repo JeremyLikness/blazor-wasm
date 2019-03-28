@@ -240,3 +240,110 @@ Create a new client-only project.
 3. Add `@inherits FetchDataBase` after the `@page` directive
 4. Run it and show it working
 
+### MVVM Pattern
+
+Create a new client-only project.
+
+1. Add a class named `MainModel`
+
+    ```csharp
+    public class MainModel : INotifyPropertyChanged
+    {
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private int _age = 30;
+
+        public int Age
+        {
+            get => _age;
+            set
+            {
+                if (value != _age)
+                {
+                    _age = value;
+                    PropertyChanged?.Invoke(value, new PropertyChangedEventArgs(nameof(Age)));
+                }
+            }
+        }
+
+        public int MaximumHeartRate
+        {
+            get
+            {
+                return 220 - _age;
+            }
+        }
+
+        public int TargetHeartRate
+        {
+            get
+            {
+                return (int)(208 - (_age * 0.7));
+            }
+        }
+    }
+    ```
+
+1. Register the class in `Startup`
+
+    `services.AddSingleton<MainModel>();`
+1. Under `Shared` add `Age.cshtml`
+
+    ```html
+    @inject MainModel Model
+    Age: <span style="cursor: pointer" onclick="@(()=>Decrement(true))">
+        <strong>&nbsp;&lt;&nbsp;</strong>
+    </span>
+    <input type="range" min="13" max="120" bind-value-oninput="Model.Age" />
+    <span style="cursor: pointer" onclick="@(()=>Decrement(false))">
+        <strong>&nbsp;&gt;&nbsp;</strong>
+    </span>
+    <span>@Model.Age</span>
+    ```
+
+1. Add the functions block:
+
+    ```csharp
+    void Decrement(bool decrement)
+    {
+        if (decrement && Model.Age > 13)
+        {
+            Model.Age -= 1;
+        }
+        if (!decrement && Model.Age < 120)
+        {
+            Model.Age += 1;
+        }
+    }
+    ```
+
+1. Then add `HeartRate.cshtml`
+
+    ```html
+    @inject MainModel Model
+    <div>
+        <p>Your target heart rate is: @Model.TargetHeartRate</p>
+        <p>Your maximum heart rate is: @Model.MaximumHeartRate</p>
+    </div>
+    ```
+
+1. Add the new controls to `Index.cshtml`:
+
+    ```html
+    <Age/>
+    <HeartRate/>
+    ```
+
+1. Run the app and show that the heart rates aren't updating
+1. Add this `@functions` code to the bottom of `HeartRate.cshtml`
+
+    ```csharp
+    protected override void OnInit()
+    {
+        base.OnInit();
+        Model.PropertyChanged += (o, e) => StateHasChanged();
+    }
+    ```
+
+1. Re-run the app and show it working
+1. Explain that this can be done at a higher level to automatically propagate across controls
