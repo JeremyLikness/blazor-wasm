@@ -113,7 +113,7 @@ Create a new Blazor project (no hosting, client only).
             if (value != _currentValue)
             {
                 _currentValue = value;
-                CurrentValueChanged(value);
+                CurrentValueChanged?.Invoke(value);
             }
         }
     }
@@ -122,6 +122,7 @@ Create a new Blazor project (no hosting, client only).
     Action<int> CurrentValueChanged { get; set; }
     ```
 
+8. Update the binding to `bind-CurrentValue` in `Counter.cshtml`
 8. Run and show it is picking up the value, but not refreshing. Explain we'll cover manual UI refresh later.
 
 ### Libraries and Interop
