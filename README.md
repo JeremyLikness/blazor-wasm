@@ -278,7 +278,7 @@ Create a new client-only project.
         {
             get
             {
-                return (int)(208 - (_age * 0.7));
+                return (int)(0.85*MaximumHeartRate);
             }
         }
     }
@@ -347,3 +347,11 @@ Create a new client-only project.
 
 1. Re-run the app and show it working
 1. Explain that this can be done at a higher level to automatically propagate across controls
+
+### Debugging
+
+1. Open URL in Chrome for any of the apps
+2. Show `SHIFT+ALT+D` key press
+3. If instructions appear, close all Chrome instances (including in the system tray) and paste the code to run with debugging enabled
+4. Repeat the key press
+5. Show a breakpoint and discuss this is very limited for now
