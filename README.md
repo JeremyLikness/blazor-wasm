@@ -181,7 +181,7 @@ Create a new client-only project.
     }
     ```
 
-10. Explain `Convert` could be `async` and await a response if necessary
+10. Run and show the goodness. Explain `Convert` could be `async` and await a response if necessary
 
 11. Add a class named `Markdown`
 
@@ -196,7 +196,7 @@ Create a new client-only project.
     }
     ```
 
-12. Re-run the app and from the console type:
+12. Re-run the app and from the console type. Be sure to change `LibrariesInterop` to the name of your project:
 
     ```javascript
     alert(DotNet.invokeMethod("LibrariesInterop", "Convert", "# heading \n## sub-heading"))
