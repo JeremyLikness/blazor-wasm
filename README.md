@@ -1,6 +1,13 @@
 # Blazor and WebAssembly
 
-This repository contains samples for a presentation about using C# and .NET in the browser with Blazor.
+This repository contains samples for a presentation about using C# and .NET in the browser using WebAssembly with Blazor.
+
+▶ [Get Started with Blazor](https://jlik.me/flj) 
+
+👋🏻 [Introduction/Overview of Blazor](https://jlik.me/flk)
+
+🔪 [Intro to Razor Components](https://jlik.me/fll)  
+
 
 ## Demos
 
@@ -356,3 +363,10 @@ Create a new client-only project.
 3. If instructions appear, close all Chrome instances (including in the system tray) and paste the code to run with debugging enabled
 4. Repeat the key press
 5. Show a breakpoint and discuss this is very limited for now
+
+## Summary
+▶ [Get Started with Blazor](https://jlik.me/flj) 
+
+👋🏻 [Introduction/Overview of Blazor](https://jlik.me/flk)
+
+🔪 [Intro to Razor Components](https://jlik.me/fll)  
