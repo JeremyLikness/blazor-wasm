@@ -6,8 +6,11 @@ This repository contains samples for a presentation about using C# and .NET in t
 
 👋🏻 [Introduction/Overview of Blazor](https://jlik.me/flk)
 
-🔪 [Intro to Razor Components](https://jlik.me/fll)  
+🔪 [Intro to Razor Components](https://jlik.me/fll)
 
+## Presentation 
+
+🎦 You can download the related PowerPoint presentation [here](https://jlik.me/fn3).
 
 ## Demos
 
