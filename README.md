@@ -70,15 +70,15 @@ Create a new Blazor project with .NET Core hosting. Run the application and step
 2. Show the `Shared` project defines a `WeatherForecast` class that is shared between the client and the server
 3. Demonstrate service registration in `Startup`
 4. Open `Startup` on the client for similar services
-5. Walk through logic for `Counter.cshtml`
-6. Point out that `FetchData.cshtml` uses the `HttpClient` but it is injected for the correct configuration
+5. Walk through logic for `Counter.razor`
+6. Point out that `FetchData.razor` uses the `HttpClient` but it is injected for the correct configuration
 7. Activate network debugging in the browser. Refresh and show the DLLs being loaded
 
 ### Reusable Components
 
 Create a new Blazor project (no hosting, client only).
 
-1. Under `Shared` create a text file but name it `LabelSlider.cshtml`
+1. Under `Shared` create a Razor view component and name it `LabelSlider.razor`
 2. Paste the following html:
 
    ```html
@@ -132,7 +132,7 @@ Create a new Blazor project (no hosting, client only).
     Action<int> CurrentValueChanged { get; set; }
     ```
 
-8. Update the binding to `bind-CurrentValue` in `Counter.cshtml`
+8. Update the binding to `bind-CurrentValue` in `Counter.razor`
 8. Run and show it is picking up the value, but not refreshing. Explain we'll cover manual UI refresh later.
 
 ### Libraries and Interop
@@ -140,7 +140,7 @@ Create a new Blazor project (no hosting, client only).
 Create a new client-only project.
 
 1. In NuGet packages, search for and install `MarkDig`
-2. In `Index.cshtml` add the following HTML:
+2. In `Index.razor` add the following HTML:
 
     ```html
     <textarea style="width: 100%" rows="5" bind="@SourceText"></textarea>
@@ -175,7 +175,7 @@ Create a new client-only project.
     ```
 
 6. Reference it from `index.html` under `wwwroot` with `<script src="./markupExtensions.js"></script>`
-7. In `index.cshtml` remove the `TargetText` references and inject the JavaScript interop: `@inject IJSRuntime JsRuntime`
+7. In `index.razor` remove the `TargetText` references and inject the JavaScript interop: `@inject IJSRuntime JsRuntime`
 8. Change the paragraph element to a reference: `<p ref="Target"/>`
 9. Update the `@functions` to call the JavaScript via interop
 
@@ -247,7 +247,7 @@ Create a new client-only project.
     }
     ```
 
-2. Open `FetchData.cshtml` and remove the `@Inject` line and entire `@functions` block
+2. Open `FetchData.razor` and remove the `@Inject` line and entire `@functions` block
 3. Add `@inherits FetchDataBase` after the `@page` directive
 4. Run it and show it working
 
@@ -298,7 +298,7 @@ Create a new client-only project.
 1. Register the class in `Startup`
 
     `services.AddSingleton<MainModel>();`
-1. Under `Shared` add `Age.cshtml`
+1. Under `Shared` add `Age.razor`
 
     ```html
     @inject MainModel Model
@@ -328,7 +328,7 @@ Create a new client-only project.
     }
     ```
 
-1. Then add `HeartRate.cshtml`
+1. Then add `HeartRate.razor`
 
     ```html
     @inject MainModel Model
@@ -338,7 +338,7 @@ Create a new client-only project.
     </div>
     ```
 
-1. Add the new controls to `Index.cshtml`:
+1. Add the new controls to `Index.razor`:
 
     ```html
     <Age/>
@@ -346,7 +346,7 @@ Create a new client-only project.
     ```
 
 1. Run the app and show that the heart rates aren't updating
-1. Add this `@functions` code to the bottom of `HeartRate.cshtml`
+1. Add this `@functions` code to the bottom of `HeartRate.razor`
 
     ```csharp
     protected override void OnInit()
