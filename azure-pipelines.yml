@@ -19,10 +19,10 @@ steps:
 - script: dotnet publish --output $(Build.ArtifactStagingDirectory)/ReusableComponents ReusableComponents/ReusableComponents.sln
   displayName: 'dotnet publish ReusableComponents'
 
-- script: dotnet build --configuration $(buildConfiguration) MvvPattern/MvvPattern.sln
-  displayName: 'dotnet build $(buildConfiguration) MvvPattern'
-- script: dotnet publish --output $(Build.ArtifactStagingDirectory)/MvvPattern MvvPattern/MvvPattern.sln
-  displayName: 'dotnet publish MvvPattern'
+- script: dotnet build --configuration $(buildConfiguration) MvvmPattern/MvvmPattern.sln
+  displayName: 'dotnet build $(buildConfiguration) MvvmPattern'
+- script: dotnet publish --output $(Build.ArtifactStagingDirectory)/MvvmPattern MvvmPattern/MvvmPattern.sln
+  displayName: 'dotnet publish MvvmPattern'
 
 - script: dotnet build --configuration $(buildConfiguration) LibrariesInterop/LibrariesInterop.sln
   displayName: 'dotnet build $(buildConfiguration) LibrariesInterop'
