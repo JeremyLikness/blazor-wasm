@@ -1,5 +1,8 @@
 # Blazor and WebAssembly
 
+[![Build Status](https://jeremylikness.visualstudio.com/blazor-wasm/_apis/build/status/JeremyLikness.blazor-wasm?branchName=master)](https://jeremylikness.visualstudio.com/blazor-wasm/_build/latest?definitionId=9&branchName=master)
+
+
 This repository contains samples for a presentation about using C# and .NET in the browser using WebAssembly with Blazor.
 
 ▶ [Get Started with Blazor](https://jlik.me/flj) 
@@ -76,6 +79,8 @@ Create a new Blazor project with .NET Core hosting. Run the application and step
 
 ### Reusable Components
 
+👀 [Live Demo](https://jlikme.z13.web.core.windows.net/blazor-wasm/ReusableComponents)
+
 Create a new Blazor project (no hosting, client only).
 
 1. Under `Shared` create a Razor view component and name it `LabelSlider.razor`
@@ -136,6 +141,8 @@ Create a new Blazor project (no hosting, client only).
 8. Run and show it is picking up the value, but not refreshing. Explain we'll cover manual UI refresh later.
 
 ### Libraries and Interop
+
+👀 [Live Demo](https://jlikme.z13.web.core.windows.net/blazor-wasm/LibrariesInterop)
 
 Create a new client-only project.
 
@@ -216,6 +223,8 @@ Create a new client-only project.
 
 ### Code Behind
 
+👀 [Live Demo](https://jlikme.z13.web.core.windows.net/blazor-wasm/CodeBehind)
+
 Create a new client-only project.
 
 1. Create a class named `FetchDataBase` (not to be confused with a database)
@@ -252,6 +261,8 @@ Create a new client-only project.
 4. Run it and show it working
 
 ### MVVM Pattern
+
+👀 [Live Demo](https://jlikme.z13.web.core.windows.net/blazor-wasm/MvvmPattern)
 
 Create a new client-only project.
 
