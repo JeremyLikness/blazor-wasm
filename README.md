@@ -2,6 +2,7 @@
 
 [![Build Status](https://jeremylikness.visualstudio.com/blazor-wasm/_apis/build/status/JeremyLikness.blazor-wasm?branchName=master)](https://jeremylikness.visualstudio.com/blazor-wasm/_build/latest?definitionId=9&branchName=master)
 
+![Release Status](https://jeremylikness.vsrm.visualstudio.com/_apis/public/Release/badge/924b10c3-4fcd-47eb-8b03-35e40f04e862/1/1)
 
 This repository contains samples for a presentation about using C# and .NET in the browser using WebAssembly with Blazor.
 
