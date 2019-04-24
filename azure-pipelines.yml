@@ -15,3 +15,6 @@ steps:
     version: '3.0.100-preview4-011223'
 - script: dotnet build --configuration $(buildConfiguration) ReusableComponents/ReusableComponents.sln
   displayName: 'dotnet build $(buildConfiguration) ReusableComponents'
+- task: PublishBuildArtifacts@1
+  inputs:
+    ArtifactName: 'blazordist'
