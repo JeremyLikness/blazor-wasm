@@ -52,6 +52,8 @@ Show the expanded code for reference, then run the asm.js version:
 
 ### Build WebAssembly (Wasm)
 
+👀 [Live Demo](https://jlikme.z13.web.core.windows.net/blazor-wasm/primes/primes.html)
+
 Show the C code:
 
 `cat primes.wasm.c`
