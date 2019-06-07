@@ -12,6 +12,8 @@ This repository contains samples for a presentation about using C# and .NET in t
 
 🔪 [Intro to Razor Components](https://jlik.me/fll)
 
+> This repository is continuously built and deployed using free Azure Pipelines. If you're interested in how it was setup and configured to build automatically and deploy to low cost Azure Storage Static Websites, read [Deploy WebAssembly from GitHub to Azure Storage Static Websites with Azure Pipelines](https://jlik.me/fzh).
+
 ## Presentation 
 
 🎦 You can download the related PowerPoint presentation [here](https://jlik.me/fn3).
