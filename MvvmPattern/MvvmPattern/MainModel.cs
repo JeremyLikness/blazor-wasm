@@ -33,7 +33,7 @@ namespace MvvmPattern
         {
             get
             {
-                return (int)(0.85*MaximumHeartRate);
+                return (int)(0.85 * MaximumHeartRate);
             }
         }
     }

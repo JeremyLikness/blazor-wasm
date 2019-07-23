@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
-VisualStudioVersion = 16.0.28606.126
+VisualStudioVersion = 16.0.29111.141
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibrariesInterop", "LibrariesInterop\LibrariesInterop.csproj", "{B23A15B6-E835-4B39-B65C-EDD77EC124A4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibrariesInterop", "LibrariesInterop\LibrariesInterop.csproj", "{2338DF2D-CBEA-4C1A-9609-C6316E8C1D23}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{B23A15B6-E835-4B39-B65C-EDD77EC124A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B23A15B6-E835-4B39-B65C-EDD77EC124A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B23A15B6-E835-4B39-B65C-EDD77EC124A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B23A15B6-E835-4B39-B65C-EDD77EC124A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2338DF2D-CBEA-4C1A-9609-C6316E8C1D23}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2338DF2D-CBEA-4C1A-9609-C6316E8C1D23}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2338DF2D-CBEA-4C1A-9609-C6316E8C1D23}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2338DF2D-CBEA-4C1A-9609-C6316E8C1D23}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {60C498C8-ADA4-4315-BAF1-3D5C17ED17F6}
+		SolutionGuid = {BC495710-5FA3-41CA-BE48-908D61DC7C9B}
 	EndGlobalSection
 EndGlobal

@@ -18,6 +18,8 @@ This repository contains samples for a presentation about using C# and .NET in t
 
 🎦 You can download the related PowerPoint presentation [here](https://jlik.me/fn3).
 
+To see how Blazor compares to other SPA frameworks like Angular, read: [Angular vs. Blazor](https://blog.jeremylikness.com/blog/2019-01-03_from-angular-to-blazor-the-health-app/).
+
 ## Demos
 
 This section contains step-by-step instructions to execute each of the demos.
@@ -28,7 +30,9 @@ The following should be installed for the demos to work:
 
 * [emscripten](https://emscripten.org/docs/getting_started/downloads.html) for the `asm.js` and WebAssembly demos
 * [http-service (node.js)](https://www.npmjs.com/package/http-server) to serve the "primes" example site (any simple web server will do)
-* [Blazor](https://jlik.me/fhs) has full instructions for installing and using Blazor
+* [Blazor](https://jlik.me/fhs) has full instructions for installing and using Blazor.
+
+The current version used in this repo is `3.0.100-preview6-012264`.
 
 ### Build asm.js
 
@@ -92,11 +96,11 @@ Create a new Blazor project (no hosting, client only).
 2. Paste the following html:
 
    ```html
-   <input type="range" min="@Min" max="@Max" bind="@CurrentValue" />
+   <input type="range" min="@Min" max="@Max" @bind="@CurrentValue" />
    <span>@CurrentValue</span>
    ```
 
-3. In a `@functions` block add:
+3. In a `@code` block add:
 
    ```csharp
     [Parameter]
@@ -115,11 +119,11 @@ Create a new Blazor project (no hosting, client only).
    <LabelSlider Min="0" Max="99" CurrentValue="@currentCount"/>
    ```
 
-5. Show how the clicks update the slider, but sliding doesn't update the host page. Also note that the value only updates when you stop sliding.
+5. Show how the clicks update the slider, but sliding doesn't update the host page. Also note that the value only updates when you stop sliding, and it only updates on the slider and not on the "current count" (although clicking the button will update the slider, the converse isn't true.)
 
-6. Inside `LabelSlider` change the binding to `bind-value-oninput` to refresh as it is sliding
+6. Inside `LabelSlider` change the binding to `@bind-value="@CurrentValue"` then add an additional `@bind-value:event="oninput"` to refresh as it is sliding
 
-7. Add an event for the current value changing and implement it
+7. Add an event for the current value changing and implement it (this will replace the existing `CurrentValue` property)
 
    ```csharp
     private int _currentValue;
@@ -142,7 +146,7 @@ Create a new Blazor project (no hosting, client only).
     Action<int> CurrentValueChanged { get; set; }
     ```
 
-8. Update the binding to `bind-CurrentValue` in `Counter.razor`
+8. Update the binding to `@bind-CurrentValue` in `Counter.razor`
 8. Run and show it is picking up the value, but not refreshing. Explain we'll cover manual UI refresh later.
 
 ### Libraries and Interop
@@ -151,24 +155,26 @@ Create a new Blazor project (no hosting, client only).
 
 Create a new client-only project.
 
-1. In NuGet packages, search for and install `MarkDig`
-2. In `Index.razor` add the following HTML:
+1. In NuGet packages, search for and install `Markdown` [here](https://www.nuget.org/packages/Markdown/)
+2. In `Index.razor` add the following HTML (remove the `SurveyPrompt`):
 
     ```html
-    <textarea style="width: 100%" rows="5" bind="@SourceText"></textarea>
-    <button onclick="@Convert">Convert</button>
+    <textarea style="width: 100%" rows="5" @bind="@SourceText"></textarea>
+    <button @onclick="@Convert">Convert</button>
     <p>@TargetText</p>
     ```
 
-3. Add a `@functions` block:
+4. Add a `@using HeyRed.MarkdownSharp` to the top 
+3. Add a `@code` block:
 
     ```csharp
     string SourceText { get; set; }
     string TargetText { get; set; }
+    Markdown markdown = new Markdown();
 
     void Convert()
     {
-        TargetText = Markdig.Markdown.ToHtml(SourceText);
+        TargetText = markdown.Transform(SourceText);
     }
     ```
 
@@ -188,32 +194,38 @@ Create a new client-only project.
 
 6. Reference it from `index.html` under `wwwroot` with `<script src="./markupExtensions.js"></script>`
 7. In `index.razor` remove the `TargetText` references and inject the JavaScript interop: `@inject IJSRuntime JsRuntime`
-8. Change the paragraph element to a reference: `<p ref="Target"/>`
-9. Update the `@functions` to call the JavaScript via interop
+8. Change the paragraph element to a reference: `<p @ref="Target"/>`
+9. Update the `@code` to call the JavaScript via interop
 
     ```csharp
     string SourceText { get; set; }
-
     ElementRef Target;
+    Markdown markdown = new Markdown();
 
     void Convert()
     {
-        var html = Markdig.Markdown.ToHtml(SourceText);
+        var html = markdown.Transform(SourceText);
         JsRuntime.InvokeAsync<object>("markupExtensions.toHtml", html, Target);
     }
     ```
 
 10. Run and show the goodness. Explain `Convert` could be `async` and await a response if necessary
 
-11. Add a class named `Markdown`
+11. Add a class named `MarkdownHost` under `Shared`:
 
     ```csharp
-    public static class Markdown
+    using HeyRed.MarkdownSharp;
+    using Microsoft.JSInterop;
+
+    namespace LibrariesInterop.Shared
     {
-        [JSInvokable]
-        public static string Convert(string src)
+        public static class MarkdownHost
         {
-            return Markdig.Markdown.ToHtml(src);
+            [JSInvokable]
+            public static string Convert(string src)
+            {
+                return (new Markdown()).Transform(src);
+            }
         }
     }
     ```
@@ -221,7 +233,7 @@ Create a new client-only project.
 12. Re-run the app and from the console type. Be sure to change `LibrariesInterop` to the name of your project:
 
     ```javascript
-    alert(DotNet.invokeMethod("LibrariesInterop", "Convert", "# heading \n## sub-heading"))
+    alert(DotNet.invokeMethod("LibrariesInterop", "Convert", "# one\n## two \n* a \n* b"))
     ```
 
 13. Explain this can also use `Task` to make it asynchronous
@@ -232,7 +244,7 @@ Create a new client-only project.
 
 Create a new client-only project.
 
-1. Create a class named `FetchDataBase` (not to be confused with a database)
+1. Create a class under `Pages` named `FetchDataBase` (not to be confused with a database)
 
     ```csharp
     public class FetchDataBase : ComponentBase
@@ -260,8 +272,17 @@ Create a new client-only project.
         }
     }
     ```
+    
+    These are the using statements:
+    
+    ```csharp
+    using Microsoft.AspNetCore.Components;
+    using System;
+    using System.Net.Http;
+    using System.Threading.Tasks;
+    ```
 
-2. Open `FetchData.razor` and remove the `@Inject` line and entire `@functions` block
+2. Open `FetchData.razor` and remove the `@Inject` line and entire `@code` block
 3. Add `@inherits FetchDataBase` after the `@page` directive
 4. Run it and show it working
 
@@ -271,7 +292,7 @@ Create a new client-only project.
 
 Create a new client-only project.
 
-1. Add a class named `MainModel`
+1. Add a class named `MainModel` to the root
 
     ```csharp
     public class MainModel : INotifyPropertyChanged
@@ -311,24 +332,28 @@ Create a new client-only project.
     }
     ```
 
-1. Register the class in `Startup`
+    Add a using for `System.ComponentModel`
+
+1. Register the class in `Startup` under `ConfigureServices`
 
     `services.AddSingleton<MainModel>();`
+
 1. Under `Shared` add `Age.razor`
 
     ```html
     @inject MainModel Model
-    Age: <span style="cursor: pointer" onclick="@(()=>Decrement(true))">
-        <strong>&nbsp;&lt;&nbsp;</strong>
+    Age: <span style="cursor: pointer" @onclick="@(()=>Decrement(true))">
+    <strong>&nbsp;&lt;&nbsp;</strong>
     </span>
-    <input type="range" min="13" max="120" bind-value-oninput="Model.Age" />
-    <span style="cursor: pointer" onclick="@(()=>Decrement(false))">
+    <input type="range" min="13" max="120" @bind-value="Model.Age"
+       @bind-value:event="oninput" />
+    <span style="cursor: pointer" @onclick="@(()=>Decrement(false))">
         <strong>&nbsp;&gt;&nbsp;</strong>
     </span>
     <span>@Model.Age</span>
     ```
 
-1. Add the functions block:
+1. Add the code block:
 
     ```csharp
     void Decrement(bool decrement)
@@ -344,7 +369,7 @@ Create a new client-only project.
     }
     ```
 
-1. Then add `HeartRate.razor`
+1. Then add `HeartRate.razor` under `Shared`:
 
     ```html
     @inject MainModel Model
@@ -354,7 +379,7 @@ Create a new client-only project.
     </div>
     ```
 
-1. Add the new controls to `Index.razor`:
+1. Add the new controls to `Index.razor` (remove `SurveyPrompt`):
 
     ```html
     <Age/>
@@ -362,7 +387,7 @@ Create a new client-only project.
     ```
 
 1. Run the app and show that the heart rates aren't updating
-1. Add this `@functions` code to the bottom of `HeartRate.razor`
+1. Add this `@code` code to the bottom of `HeartRate.razor`
 
     ```csharp
     protected override void OnInit()
@@ -374,6 +399,8 @@ Create a new client-only project.
 
 1. Re-run the app and show it working
 1. Explain that this can be done at a higher level to automatically propagate across controls
+
+Learn more about: [MVVM support in Blazor](https://blog.jeremylikness.com/blog/2019-01-04_mvvm-support-in-blazor/).
 
 ### Debugging
 

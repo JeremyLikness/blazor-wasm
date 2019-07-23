@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
-VisualStudioVersion = 16.0.28606.126
+VisualStudioVersion = 16.0.29111.141
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvvmPattern", "MvvmPattern\MvvmPattern.csproj", "{90B5C52B-487A-429E-9D19-142E2309D378}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvvmPattern", "MvvmPattern\MvvmPattern.csproj", "{AE27F397-50E3-4A5E-889E-D8E1019F1CD8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{90B5C52B-487A-429E-9D19-142E2309D378}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{90B5C52B-487A-429E-9D19-142E2309D378}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{90B5C52B-487A-429E-9D19-142E2309D378}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{90B5C52B-487A-429E-9D19-142E2309D378}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE27F397-50E3-4A5E-889E-D8E1019F1CD8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE27F397-50E3-4A5E-889E-D8E1019F1CD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE27F397-50E3-4A5E-889E-D8E1019F1CD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE27F397-50E3-4A5E-889E-D8E1019F1CD8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {538BC954-49F3-4029-8FE9-F2EB7B440419}
+		SolutionGuid = {34F4893D-8028-4C72-A626-733761C0589C}
 	EndGlobalSection
 EndGlobal
