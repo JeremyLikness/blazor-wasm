@@ -12,7 +12,7 @@ variables:
 steps:
 - task: UseDotNet@2
   inputs:
-    version: '3.0.100-preview6-012264'
+    version: '3.0.100-preview7-012821'
 
 - script: dotnet build --configuration $(buildConfiguration) ReusableComponents/ReusableComponents.sln
   displayName: 'dotnet build $(buildConfiguration) ReusableComponents'

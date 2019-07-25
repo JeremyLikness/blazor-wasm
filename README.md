@@ -14,7 +14,7 @@ This repository contains samples for a presentation about using C# and .NET in t
 
 > This repository is continuously built and deployed using free Azure Pipelines. If you're interested in how it was setup and configured to build automatically and deploy to low cost Azure Storage Static Websites, read [Deploy WebAssembly from GitHub to Azure Storage Static Websites with Azure Pipelines](https://jlik.me/fzh).
 
-## Presentation 
+## Presentation
 
 🎦 You can download the related PowerPoint presentation [here](https://jlik.me/fn3).
 
@@ -32,7 +32,7 @@ The following should be installed for the demos to work:
 * [http-service (node.js)](https://www.npmjs.com/package/http-server) to serve the "primes" example site (any simple web server will do)
 * [Blazor](https://jlik.me/fhs) has full instructions for installing and using Blazor.
 
-The current version used in this repo is `3.0.100-preview6-012264`.
+The current version used in this repo is `3.0.0-preview7.19365.7`.
 
 ### Build asm.js
 
