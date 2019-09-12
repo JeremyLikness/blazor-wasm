@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
-VisualStudioVersion = 16.0.29111.141
+VisualStudioVersion = 16.0.29230.61
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReusableComponents", "ReusableComponents\ReusableComponents.csproj", "{96656428-D11F-47D9-9A9A-30540B7CFE7F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReusableComponents", "ReusableComponents\ReusableComponents.csproj", "{54267C2A-E4BD-45FA-9BB4-8445F02CC61E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{96656428-D11F-47D9-9A9A-30540B7CFE7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{96656428-D11F-47D9-9A9A-30540B7CFE7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{96656428-D11F-47D9-9A9A-30540B7CFE7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{96656428-D11F-47D9-9A9A-30540B7CFE7F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54267C2A-E4BD-45FA-9BB4-8445F02CC61E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54267C2A-E4BD-45FA-9BB4-8445F02CC61E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54267C2A-E4BD-45FA-9BB4-8445F02CC61E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54267C2A-E4BD-45FA-9BB4-8445F02CC61E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {1A133AA2-0A90-4104-B4F3-BB9AED1938BA}
+		SolutionGuid = {7C4BF0DE-FC02-47E0-833C-BC952555D281}
 	EndGlobalSection
 EndGlobal

@@ -1,6 +1,6 @@
-﻿@page "/"
-@using HeyRed.MarkdownSharp 
+﻿@using HeyRed.MarkdownSharp
 @inject IJSRuntime JsRuntime
+@page "/"
 
 <h1>Hello, world!</h1>
 
@@ -12,8 +12,8 @@ Welcome to your new app.
 
 @code {
     string SourceText { get; set; }
-    ElementRef Target;
     Markdown markdown = new Markdown();
+    ElementReference Target;
 
     void Convert()
     {

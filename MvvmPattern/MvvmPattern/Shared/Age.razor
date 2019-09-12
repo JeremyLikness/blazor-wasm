@@ -1,15 +1,16 @@
-@inject MainModel Model
-    Age: <span style="cursor: pointer" @onclick="@(()=>Decrement(true))">
+﻿@inject MainModel Model
+    Age: <span style="cursor: pointer" @onclick="@(() => Decrement(true))">
     <strong>&nbsp;&lt;&nbsp;</strong>
 </span>
 <input type="range" min="13" max="120" @bind-value="Model.Age"
        @bind-value:event="oninput" />
-<span style="cursor: pointer" @onclick="@(()=>Decrement(false))">
+<span style="cursor: pointer" @onclick="@(() => Decrement(false))">
     <strong>&nbsp;&gt;&nbsp;</strong>
 </span>
 <span>@Model.Age</span>
 
 @code {
+
     void Decrement(bool decrement)
     {
         if (decrement && Model.Age > 13)

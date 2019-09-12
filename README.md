@@ -32,7 +32,7 @@ The following should be installed for the demos to work:
 * [http-service (node.js)](https://www.npmjs.com/package/http-server) to serve the "primes" example site (any simple web server will do)
 * [Blazor](https://jlik.me/fhs) has full instructions for installing and using Blazor.
 
-The current version used in this repo is `3.0.0-preview7.19365.7`.
+The current version used in this repo is `3.0.0-preview9.19424.4`.
 
 ### Build asm.js
 
@@ -104,13 +104,13 @@ Create a new Blazor project (no hosting, client only).
 
    ```csharp
     [Parameter]
-    int Min { get; set; }
+    public int Min { get; set; }
 
     [Parameter]
-    int Max { get; set; }
+    public int Max { get; set; }
 
     [Parameter]
-    int CurrentValue { get; set; }
+    public int CurrentValue { get; set; }
     ```
 
 4. Drop into the `Counter` page:
@@ -129,7 +129,7 @@ Create a new Blazor project (no hosting, client only).
     private int _currentValue;
 
     [Parameter]
-    int CurrentValue
+    public int CurrentValue
     {
         get => _currentValue;
         set
@@ -143,11 +143,11 @@ Create a new Blazor project (no hosting, client only).
     }
 
     [Parameter]
-    Action<int> CurrentValueChanged { get; set; }
+    public Action<int> CurrentValueChanged { get; set; }
     ```
 
 8. Update the binding to `@bind-CurrentValue` in `Counter.razor`
-8. Run and show it is picking up the value, but not refreshing. Explain we'll cover manual UI refresh later.
+9. Run and show it is picking up the value, but not refreshing. Explain we'll cover manual UI refresh later.
 
 ### Libraries and Interop
 
@@ -164,8 +164,8 @@ Create a new client-only project.
     <p>@TargetText</p>
     ```
 
-4. Add a `@using HeyRed.MarkdownSharp` to the top 
-3. Add a `@code` block:
+3. Add a `@using HeyRed.MarkdownSharp` to the top
+4. Add a `@code` block:
 
     ```csharp
     string SourceText { get; set; }
@@ -178,9 +178,9 @@ Create a new client-only project.
     }
     ```
 
-4. Run and show the conversion. Explain that the bindings are "safe" and don't expand the HTML.
+5. Run and show the conversion. Explain that the bindings are "safe" and don't expand the HTML.
 
-5. Create a file under `wwwroot` called `markupExtensions.js` and populate it with:
+6. Create a file under `wwwroot` called `markupExtensions.js` and populate it with:
 
     ```javascript
     window.markupExtensions = {
@@ -192,14 +192,14 @@ Create a new client-only project.
     }
     ```
 
-6. Reference it from `index.html` under `wwwroot` with `<script src="./markupExtensions.js"></script>`
-7. In `index.razor` remove the `TargetText` references and inject the JavaScript interop: `@inject IJSRuntime JsRuntime`
-8. Change the paragraph element to a reference: `<p @ref="Target"/>`
-9. Update the `@code` to call the JavaScript via interop
+7. Reference it from `index.html` under `wwwroot` with `<script src="./markupExtensions.js"></script>`
+8. In `index.razor` remove the `TargetText` references and inject the JavaScript interop: `@inject IJSRuntime JsRuntime`
+9. Change the paragraph element to a reference: `<p @ref="Target"/>`
+10. Update the `@code` to call the JavaScript via interop
 
     ```csharp
     string SourceText { get; set; }
-    ElementRef Target;
+    ElementReference Target;
     Markdown markdown = new Markdown();
 
     void Convert()
@@ -209,9 +209,9 @@ Create a new client-only project.
     }
     ```
 
-10. Run and show the goodness. Explain `Convert` could be `async` and await a response if necessary
+11. Run and show the goodness. Explain `Convert` could be `async` and await a response if necessary
 
-11. Add a class named `MarkdownHost` under `Shared`:
+12. Add a class named `MarkdownHost` under `Shared`:
 
     ```csharp
     using HeyRed.MarkdownSharp;
@@ -224,19 +224,19 @@ Create a new client-only project.
             [JSInvokable]
             public static string Convert(string src)
             {
-                return (new Markdown()).Transform(src);
+                return new Markdown().Transform(src);
             }
         }
     }
     ```
 
-12. Re-run the app and from the console type. Be sure to change `LibrariesInterop` to the name of your project:
+13. Re-run the app and from the console type. Be sure to change `LibrariesInterop` to the name of your project:
 
     ```javascript
     alert(DotNet.invokeMethod("LibrariesInterop", "Convert", "# one\n## two \n* a \n* b"))
     ```
 
-13. Explain this can also use `Task` to make it asynchronous
+14. Explain this can also use `Task` to make it asynchronous
 
 ### Code Behind
 
@@ -254,7 +254,7 @@ Create a new client-only project.
 
         public WeatherForecast[] forecasts;
 
-        protected override async Task OnInitAsync()
+        protected override async Task OnInitializedAsync()
         {
             forecasts = await Http.GetJsonAsync<WeatherForecast[]>
                 ("sample-data/weather.json");
@@ -390,9 +390,9 @@ Create a new client-only project.
 1. Add this `@code` code to the bottom of `HeartRate.razor`
 
     ```csharp
-    protected override void OnInit()
+    protected override void OnInitialized()
     {
-        base.OnInit();
+        base.OnInitialized();
         Model.PropertyChanged += (o, e) => StateHasChanged();
     }
     ```
@@ -411,7 +411,7 @@ Learn more about: [MVVM support in Blazor](https://blog.jeremylikness.com/blog/2
 5. Show a breakpoint and discuss this is very limited for now
 
 ## Summary
-▶ [Get Started with Blazor](https://jlik.me/flj) 
+▶ [Get Started with Blazor](https://jlik.me/flj)
 
 👋🏻 [Introduction/Overview of Blazor](https://jlik.me/flk)
 

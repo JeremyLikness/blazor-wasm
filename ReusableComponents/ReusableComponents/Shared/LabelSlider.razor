@@ -1,17 +1,17 @@
-<input type="range" min="@Min" max="@Max" @bind-value="@CurrentValue"
-       @bind-value:event="oninput"/>
+﻿<input type="range" min="@Min" max="@Max" @bind-value="@CurrentValue" @bind-value:event="oninput"/>
 <span>@CurrentValue</span>
+
 @code {
     [Parameter]
-    int Min { get; set; }
+    public int Min { get; set; }
 
     [Parameter]
-    int Max { get; set; }
+    public int Max { get; set; }
 
     private int _currentValue;
 
     [Parameter]
-    int CurrentValue
+    public int CurrentValue
     {
         get => _currentValue;
         set
@@ -25,6 +25,6 @@
     }
 
     [Parameter]
-    Action<int> CurrentValueChanged { get; set; }
+    public Action<int> CurrentValueChanged { get; set; }
     
 }

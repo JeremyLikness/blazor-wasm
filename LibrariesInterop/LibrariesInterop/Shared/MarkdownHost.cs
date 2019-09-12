@@ -8,7 +8,7 @@ namespace LibrariesInterop.Shared
         [JSInvokable]
         public static string Convert(string src)
         {
-            return (new Markdown()).Transform(src);
+            return new Markdown().Transform(src);
         }
     }
 }

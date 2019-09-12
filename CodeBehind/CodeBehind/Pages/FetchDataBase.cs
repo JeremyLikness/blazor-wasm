@@ -12,7 +12,7 @@ namespace CodeBehind.Pages
 
         public WeatherForecast[] forecasts;
 
-        protected override async Task OnInitAsync()
+        protected override async Task OnInitializedAsync()
         {
             forecasts = await Http.GetJsonAsync<WeatherForecast[]>
                 ("sample-data/weather.json");

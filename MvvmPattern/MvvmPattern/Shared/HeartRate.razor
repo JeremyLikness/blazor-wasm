@@ -1,13 +1,13 @@
-@inject MainModel Model
+﻿@inject MainModel Model
 <div>
     <p>Your target heart rate is: @Model.TargetHeartRate</p>
     <p>Your maximum heart rate is: @Model.MaximumHeartRate</p>
 </div>
 
 @code {
-    protected override void OnInit()
+    protected override void OnInitialized()
     {
-        base.OnInit();
+        base.OnInitialized();
         Model.PropertyChanged += (o, e) => StateHasChanged();
     }
 }
