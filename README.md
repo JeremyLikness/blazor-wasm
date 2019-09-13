@@ -4,6 +4,8 @@
 
 ![Release Status](https://jeremylikness.vsrm.visualstudio.com/_apis/public/Release/badge/924b10c3-4fcd-47eb-8b03-35e40f04e862/1/1)
 
+[![Free Azure Account](https://img.shields.io/badge/FREE-Azure-0077ff)](https://jlik.me/gmi) Get your [Free Azure Account](https://jlik.me/gmi)
+
 This repository contains samples for a presentation about using C# and .NET in the browser using WebAssembly with Blazor.
 
 ▶ [Get Started with Blazor](https://jlik.me/flj) 
