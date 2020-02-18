@@ -1,16 +1,17 @@
-﻿using Microsoft.AspNetCore.Blazor.Hosting;
+﻿using System.Threading.Tasks;
+using Microsoft.AspNetCore.Blazor.Hosting;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace MvvmPattern
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
+            var builder = WebAssemblyHostBuilder.CreateDefault();
+            builder.RootComponents.Add<App>("app");
+            builder.Services.AddSingleton<MainModel>();
+            await builder.Build().RunAsync();
         }
-
-        public static IWebAssemblyHostBuilder CreateHostBuilder(string[] args) =>
-            BlazorWebAssemblyHost.CreateDefaultBuilder()
-                .UseBlazorStartup<Startup>();
     }
 }

@@ -32,7 +32,7 @@ The following should be installed for the demos to work:
 * [http-service (node.js)](https://www.npmjs.com/package/http-server) to serve the "primes" example site (any simple web server will do)
 * [Blazor](https://jlik.me/fhs) has full instructions for installing and using Blazor.
 
-The current version used in this repo is `3.0.0-preview9.19424.4`.
+The current version used in this repo is `3.2.0-preview1.20073.1`.
 
 ### Build asm.js
 
@@ -334,9 +334,9 @@ Create a new client-only project.
 
     Add a using for `System.ComponentModel`
 
-1. Register the class in `Startup` under `ConfigureServices`
+1. Register the class in `Program`:
 
-    `services.AddSingleton<MainModel>();`
+    `builder.Services.AddSingleton<MainModel>();`
 
 1. Under `Shared` add `Age.razor`
 
